@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Schedule New Battle{% endblock %}
+
+{% block body %}
+    <h1>Schedule New Battle</h1>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            {% include 'battle/_form.html.twig' with {button_label: 'Schedule Battle'} %}
+        </div>
+    </div>
+{% endblock %}

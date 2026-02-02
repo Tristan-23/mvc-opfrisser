@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ robot.name }}{% endblock %}
+
+{% block body %}
+    <h1>Edit {{ robot.name }}</h1>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            {% include 'robot/_form.html.twig' with {button_label: 'Update Robot'} %}
+        </div>
+    </div>
+{% endblock %}

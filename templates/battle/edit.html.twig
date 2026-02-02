@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit {{ battle.name }}{% endblock %}
+
+{% block body %}
+    <h1>Edit {{ battle.name }}</h1>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            {% include 'battle/_form.html.twig' with {button_label: 'Update Battle'} %}
+        </div>
+    </div>
+{% endblock %}

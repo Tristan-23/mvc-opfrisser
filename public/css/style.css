@@ -1,0 +1,54 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f9fa;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar-brand {
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+}
+
+.card-stats .card-body {
+    text-align: center;
+}
+
+.card-stats .display-6 {
+    font-weight: 700;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.badge-knockout {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.leaderboard-rank {
+    font-weight: 700;
+    font-size: 1.2rem;
+    width: 40px;
+    text-align: center;
+}
+
+.leaderboard-rank.rank-1 { color: #ffc107; }
+.leaderboard-rank.rank-2 { color: #adb5bd; }
+.leaderboard-rank.rank-3 { color: #cd7f32; }
+
+.status-scheduled { color: #0d6efd; }
+.status-completed { color: #198754; }
+
+.hero-section {
+    background: linear-gradient(135deg, #212529 0%, #343a40 100%);
+    color: #fff;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}

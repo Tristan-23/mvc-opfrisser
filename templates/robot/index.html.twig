@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Robots{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Robots</h1>
+        <a href="{{ path('app_robot_new') }}" class="btn btn-primary">Register New Robot</a>
+    </div>
+
+    {% if robots|length > 0 %}
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Owner</th>
+                        <th>Weapon</th>
+                        <th>Locomotion</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for robot in robots %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('app_robot_show', {id: robot.id}) }}">{{ robot.name }}</a>
+                            </td>
+                            <td>{{ robot.owner }}</td>
+                            <td><span class="badge bg-secondary">{{ robot.weapon.label }}</span></td>
+                            <td>{{ robot.locomotion.label }}</td>
+                            <td>
+                                <a href="{{ path('app_robot_edit', {id: robot.id}) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            No robots registered yet. <a href="{{ path('app_robot_new') }}">Register one now!</a>
+        </div>
+    {% endif %}
+{% endblock %}

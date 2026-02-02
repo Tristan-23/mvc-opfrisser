@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <div class="hero-section">
+        <h1>BrawlBots Scoreboard</h1>
+        <p class="lead mb-0">Track your robot battles, scores, and rankings.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Leaderboard</h5>
+                    <a href="{{ path('app_robot_index') }}" class="btn btn-sm btn-outline-secondary">All Robots</a>
+                </div>
+                <div class="card-body p-0">
+                    {% if leaderboard|length > 0 %}
+                        <table class="table table-hover mb-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Robot</th>
+                                    <th>Owner</th>
+                                    <th>Wins</th>
+                                    <th>Losses</th>
+                                    <th>KOs</th>
+                                    <th>Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for entry in leaderboard %}
+                                    <tr>
+                                        <td>
+                                            <span class="leaderboard-rank rank-{{ loop.index }}">{{ loop.index }}</span>
+                                        </td>
+                                        <td>
+                                            <a href="{{ path('app_robot_show', {id: entry.robot.id}) }}">
+                                                {{ entry.robot.name }}
+                                            </a>
+                                        </td>
+                                        <td>{{ entry.robot.owner }}</td>
+                                        <td><span class="badge bg-success">{{ entry.wins }}</span></td>
+                                        <td><span class="badge bg-danger">{{ entry.losses }}</span></td>
+                                        <td>{{ entry.knockouts }}</td>
+                                        <td><strong>{{ entry.total_score }}</strong></td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% else %}
+                        <p class="text-muted p-3 mb-0">No robots registered yet. <a href="{{ path('app_robot_new') }}">Add one!</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Upcoming Battles</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for battle in upcoming_battles %}
+                        <li class="list-group-item">
+                            <a href="{{ path('app_battle_show', {id: battle.id}) }}">{{ battle.name }}</a>
+                            <br><small class="text-muted">{{ battle.dateTime|date('M j, Y H:i') }}</small>
+                        </li>
+                    {% else %}
+                        <li class="list-group-item text-muted">No upcoming battles.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Recent Results</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for battle in recent_battles %}
+                        <li class="list-group-item">
+                            <a href="{{ path('app_battle_show', {id: battle.id}) }}">{{ battle.name }}</a>
+                            <span class="badge bg-success float-end">Completed</span>
+                            <br><small class="text-muted">{{ battle.dateTime|date('M j, Y H:i') }}</small>
+                        </li>
+                    {% else %}
+                        <li class="list-group-item text-muted">No completed battles yet.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="d-grid gap-2">
+                <a href="{{ path('app_robot_new') }}" class="btn btn-primary">Register New Robot</a>
+                <a href="{{ path('app_battle_new') }}" class="btn btn-outline-primary">Schedule Battle</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
