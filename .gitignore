@@ -1,9 +1,12 @@
+# PhpStorm project settings
 /.idea/
 
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
+.env.dev
+!.env.test
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -13,4 +16,9 @@
 ###> phpunit/phpunit ###
 /phpunit.xml
 /.phpunit.cache/
+.phpunit.result.cache
 ###< phpunit/phpunit ###
+
+# OS files
+.DS_Store
+Thumbs.db
